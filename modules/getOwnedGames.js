@@ -1,14 +1,15 @@
 const request = require('request');
 const tjs = require('./typeof');
 
-module.exports = (steam64id, apikey, callback) => {
+module.exports = (steam64id, apikey, freeGames, callback) => {
   if(tjs(steam64id) && tjs(apikey) !== undefined){
     request({
       uri: '/IPlayerService/GetOwnedGames/v1/',
       baseUrl: 'http://api.steampowered.com/',
       qs: {
         key: apikey,
-        steamid: steam64id
+        steamid: steam64id,
+        include_played_free_games: freeGames
       }
     }, (err, res, body) => {
       if(err) callback("There was an error making your request.");
