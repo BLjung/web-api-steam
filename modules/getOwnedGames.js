@@ -1,7 +1,7 @@
 const request = require('request');
 const tjs = require('./typeof');
 
-module.exports = (steam64id, apikey, freeGames, appInfo callback) => {
+module.exports = (steam64id, apikey, freeGames, appInfo, callback) => {
   if(tjs(steam64id) && tjs(apikey) !== undefined){
     request({
       uri: '/IPlayerService/GetOwnedGames/v1/',
